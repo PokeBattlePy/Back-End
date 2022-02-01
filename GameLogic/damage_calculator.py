@@ -23,8 +23,8 @@ def get_type_modifier(atk_type:str,def_types:list) -> int:
       result *= 0
   return result
 
-def is_STAB(poke,move):
-    return move.type_name in poke.types
+def is_STAB(poke:dict,move:dict) -> bool:
+  return move['type'] in poke['types']
 
 def calc_damage(atk_poke,def_poke,move):
   """
