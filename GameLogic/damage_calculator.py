@@ -25,3 +25,34 @@ def get_type_modifier(atk_type,def_types):
 
 def is_STAB(poke,move):
     return move.type_name in poke.types
+
+def calc_damage(atk_poke,def_poke,move):
+  """
+  inputs: Attacking Pokemon Object, Definding Pokemon Object, Move Object
+  output: Int
+  """
+  #Constant for pokemon level, adjust this for tweaking final damage output
+  LEVEL = 10
+
+  # Determines weakness / resistance modifier based on defending pokemon's typings
+  type_modifier = get_type_modifier(move.type_name, def_poke.types)
+
+  # Determines modifier based on pokemon stats
+  level_modifier = (2 * LEVEL / 5 + 2)
+  atk_def_ratio = (atk_poke.atk / def_poke.defense)
+  head_to_head_modifier = (level_modifier *atk_def_ratio / 50)
+
+  # Determines damage before accounting for types
+  adjusted_damage = head_to_head_modifier * move.power + 2
+ 
+  # Multipies damage by 1.5 if move type matches attacking pokemon's type
+  STAB = is_STAB(atk_poke,move)
+  STAB_modifier = 1
+  if STAB:
+    STAB_modifier = 1.5
+
+  # Final Damage Caculation
+  final_dmg = adjusted_damage * STAB_modifier * type_modifier
+
+  # Return Rounded Damage Value
+  return int(final_dmg)
