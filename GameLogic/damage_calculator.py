@@ -1,6 +1,6 @@
 from type_table import type_table
 
-def get_type_modifier(atk_type,def_types):
+def get_type_modifier(atk_type:str,def_types:list) -> int:
   def_type_one = def_types[0].lower()
   def_type_two = None
 
