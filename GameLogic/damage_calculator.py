@@ -26,7 +26,7 @@ def get_type_modifier(atk_type:str,def_types:list) -> int:
 def is_STAB(poke:dict,move:dict) -> bool:
   return move['type'] in poke['types']
 
-def calc_damage(atk_poke,def_poke,move):
+def calc_damage(atk_poke:dict,def_poke:dict,move:dict) -> int:
   """
   inputs: Attacking Pokemon Object, Definding Pokemon Object, Move Object
   output: Int
@@ -34,16 +34,27 @@ def calc_damage(atk_poke,def_poke,move):
   #Constant for pokemon level, adjust this for tweaking final damage output
   LEVEL = 10
 
+  atk = None
+  defense = None
+
+  # Determine whether to use special or physical stats will result in type int
+  if move['class'] == 'special':
+    atk = atk_poke['stats']['special-attack']
+    defense = def_poke['stats']['special-defense']
+  else:
+    atk = atk_poke['stats']['attack']
+    defense = def_poke['stats']['defense']
+
   # Determines weakness / resistance modifier based on defending pokemon's typings
-  type_modifier = get_type_modifier(move.type_name, def_poke.types)
+  type_modifier = get_type_modifier(move['type'], def_poke['types'])
 
   # Determines modifier based on pokemon stats
   level_modifier = (2 * LEVEL / 5 + 2)
-  atk_def_ratio = (atk_poke.atk / def_poke.defense)
+  atk_def_ratio = (atk / defense)
   head_to_head_modifier = (level_modifier *atk_def_ratio / 50)
 
   # Determines damage before accounting for types
-  adjusted_damage = head_to_head_modifier * move.power + 2
+  adjusted_damage = head_to_head_modifier * move['power'] + 2
  
   # Multipies damage by 1.5 if move type matches attacking pokemon's type
   STAB = is_STAB(atk_poke,move)
