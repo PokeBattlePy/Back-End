@@ -56,3 +56,14 @@ def calc_damage(atk_poke,def_poke,move):
 
   # Return Rounded Damage Value
   return int(final_dmg)
+
+def update_health(poke,damage):
+  poke.health = poke.health - damage
+
+def attack(atk_poke,def_poke,move):
+  """
+  could be made into a method on the attacking pokemon
+  """
+
+  damage_dealt = calc_damage(atk_poke,def_poke,move)
+  update_health(def_poke,damage_dealt)
