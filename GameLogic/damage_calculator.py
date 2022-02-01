@@ -22,3 +22,6 @@ def get_type_modifier(atk_type,def_types):
     elif atk_type in type_table[def_type_two]['immunities']:
       result *= 0
   return result
+
+def is_STAB(poke,move):
+    return move.type_name in poke.types
