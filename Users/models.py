@@ -49,7 +49,6 @@ def create_card(rarity=None, pokemon_int=None):
     "front":front, 
     "back":back, 
     "stats":stats,}
-    print(f"{obj.rarity}  {obj.name} has been unlocked.")
     return obj
 
 class Trainer(models.Model):
