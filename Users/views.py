@@ -2,9 +2,9 @@ from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
 )
-from .models import Trainer, PokemonCard
+from .models import Trainer
 from .permissions import IsOwnerOrReadOnly
-from .serializers import UserSerializer, CardSerializer
+from .serializers import UserSerializer
 
 
 class TrainerList(ListCreateAPIView):
@@ -18,11 +18,3 @@ class TrainerDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
 
 
-class CardList(ListCreateAPIView):
-    queryset = PokemonCard.objects.all()
-    serializer_class = CardSerializer
-
-class CardDetail(RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsOwnerOrReadOnly,)
-    queryset = PokemonCard.objects.all()
-    serializer_class = CardSerializer

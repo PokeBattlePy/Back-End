@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Trainer, PokemonCard
+from .models import Trainer
 
 
 admin.site.register(Trainer)
-admin.site.register(PokemonCard)
+

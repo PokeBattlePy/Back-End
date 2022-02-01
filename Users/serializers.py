@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Trainer, PokemonCard
+from .models import Trainer
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -7,7 +7,3 @@ class UserSerializer(serializers.ModelSerializer):
         model = Trainer
         fields = "__all__"
 
-class CardSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PokemonCard
-        fields = "__all__"
