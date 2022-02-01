@@ -68,10 +68,10 @@ def calc_damage(atk_poke:dict,def_poke:dict,move:dict) -> int:
   # Return Rounded Damage Value
   return int(final_dmg)
 
-def update_health(poke,damage):
-  poke.health = poke.health - damage
+def update_health(poke:dict,damage:int) -> None:
+  poke['stats']['hp'] = poke['stats']['hp'] - damage
 
-def attack(atk_poke,def_poke,move):
+def attack(atk_poke:dict,def_poke:dict,move:dict) -> None:
   """
   could be made into a method on the attacking pokemon
   """
