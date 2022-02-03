@@ -27,7 +27,7 @@ class Create_Join_Game(APIView):
         new_game = Game(owner = request.user, 
                             user_pokemon = user_deck,
                             comp_pokemon = computer_deck, 
-                            active_player_pokemon = user_deck[0],
+                            active_user_pokemon = user_deck[0],
                             active_comp_pokemon = computer_deck[0],
                             ghost = ghost,
                             user_poke_status = user_deck,
