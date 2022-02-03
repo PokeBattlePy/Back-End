@@ -34,7 +34,10 @@ class Create_Join_Game(APIView):
                             comp_poke_status = computer_deck
                             )
         new_game.save()
-        return Response(GameSerializer(new_game).data)
+        #return Response(GameSerializer(new_game).data)
+        response = Response(GameSerializer(new_game).data)
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        return response
         
     
 
@@ -68,7 +71,10 @@ class GameDetail(APIView):
         queryset.update(user_pokemon = game['user_pokemon'])
         queryset.update(comp_pokemon = game['comp_pokemon'])
         
-        return Response(GameSerializer(queryset[0]).data)
+        #return Response(GameSerializer(queryset[0]).data)
+        response = Response(GameSerializer(queryset[0]).data)
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        return response
         
 
                 
