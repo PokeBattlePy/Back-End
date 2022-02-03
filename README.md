@@ -1,10 +1,19 @@
 # Back-End
 
-## Endpoint For Playing A Turn
+## Endpoints For Game
 
-`/game/battle`
+
+### /game/
+
 **requires auth token**
+body:
+{
+    `DECK FROM TRAINER`
+}
 
+### /game/battle
+
+**requires auth token**
 body:
 {
     "game":`GAME_ID`,
@@ -16,3 +25,4 @@ where `GAME_ID` is the id for the game we are in and `ATTACK` is one of the thre
 1. `base`
 2. `special`
 3. `defense`
+
