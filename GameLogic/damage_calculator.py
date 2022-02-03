@@ -1,4 +1,4 @@
-from type_table import type_table
+from .type_table import type_table
 
 def get_type_modifier(atk_type:str,def_types:list) -> int:
   def_type_one = def_types[0].lower()
@@ -78,3 +78,4 @@ def attack(atk_poke:dict,def_poke:dict,move:dict) -> None:
 
   damage_dealt = calc_damage(atk_poke,def_poke,move)
   update_health(def_poke,damage_dealt)
+  return def_poke

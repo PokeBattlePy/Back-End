@@ -28,8 +28,8 @@ def create_card(rarity=None, pokemon_int=None):
     special = pokebase.move(pokemon_obj.moves[0].move.name)
 
     moves = {
-    "base":{"name":pokemon_obj.moves[1].move.name, "power": attack.power, "class":attack.damage_class.name, "type": attack.type.name}, 
-    "special": {"name":pokemon_obj.moves[0].move.name, "power": special.power, "class":special.damage_class.name, "type": special.type.name}
+    "base":{"name":pokemon_obj.moves[1].move.name, "power": attack.power|55, "class":attack.damage_class.name, "type": attack.type.name}, 
+    "special": {"name":pokemon_obj.moves[0].move.name, "power": special.power|55, "class":special.damage_class.name, "type": special.type.name}
     }
     
     stats = {
@@ -51,13 +51,16 @@ def create_card(rarity=None, pokemon_int=None):
     "stats":stats,}
     return obj
 
+def init_cards():
+  return [create_card(), create_card()]
+
 class Trainer(models.Model):
     owner = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True
     )
     name = models.CharField(max_length=32)
     decks = models.JSONField(default=list)
-    cards = models.JSONField(default=[create_card(), create_card()])
+    cards = models.JSONField(default=init_cards)
     prev_battles = models.JSONField(default=list)
 
 
