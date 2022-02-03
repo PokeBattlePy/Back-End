@@ -2,7 +2,6 @@
 
 ## Endpoints For Game
 
-
 ### /game/
 
 **requires auth token**
@@ -14,6 +13,8 @@ body:
 ### /game/battle
 
 **requires auth token**
+Endpoint for playing a round, takes a put request
+
 body:
 {
     "game":`GAME_ID`,
