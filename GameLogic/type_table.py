@@ -103,3 +103,4 @@ type_table = {
     'immunities': ['dragon']
   }
 }
+
