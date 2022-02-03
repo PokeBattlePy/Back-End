@@ -2,7 +2,8 @@
 
 ## Endpoint For Playing A Turn
 
-/battle
+`/battle`
+**requires auth token**
 
 body:
 {
