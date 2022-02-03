@@ -2,9 +2,11 @@
 
 ## Endpoints For Game
 
-### /game/
+### /game
 
 **requires auth token**
+Endpoint for creating a Game instance
+
 body:
 {
     `DECK FROM TRAINER`
