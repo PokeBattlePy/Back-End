@@ -172,3 +172,7 @@ CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
 CSRF_TRUSTED_ORIGINS = [
     'https://poke-battle-py.herokuapp.com'
 ]
+
+JWT_AUTH = {
+    'JWT_VERIFY_EXPIRATION': False,
+}
