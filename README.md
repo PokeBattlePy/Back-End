@@ -2,7 +2,7 @@
 
 ## Endpoints For Game
 
-### /game
+#### /game
 
 **requires auth token**
 Endpoint for creating a Game instance
@@ -12,7 +12,7 @@ body:
     `DECK FROM TRAINER`
 }
 
-### /game/battle
+#### /game/battle
 
 **requires auth token**
 Endpoint for playing a round, takes a put request
