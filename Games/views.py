@@ -47,10 +47,7 @@ class GameDetail(APIView):
     
     
     def put(self, request):
-        print("Incoming Request")
-        print(request)
-        print("Request Data")
-        print(request.data)
+        print("Playing Round")
         comp_selections = ['base', 'special', 'defense']
         
         game = request.data["body"]["game"]
@@ -61,10 +58,9 @@ class GameDetail(APIView):
         comp_selection = random.choices(comp_selections, weights=(40,50,10))[0]
         
         if comp_selection != 'defense' and game['active_comp_pokemon'] is not None:
-            last_move = game['active_comp_pokemon']['moves'][comp_selection]['name']
-            print(last_move)
+            game['last_move'] = game['active_comp_pokemon']['moves'][comp_selection]['name']
         else:
-            last_move = "defense"
+            game['last_move'] = "defense"
         calculations(game, 'comp', 'user', comp_selection)
         
         return Response(game)
