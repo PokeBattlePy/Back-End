@@ -20,6 +20,10 @@ class Create_Join_Game(APIView):
     permission_classes = (AllowAny)
     
     def post(self, request):
+        print("Incoming Request")
+        print(request)
+        print("Request Data")
+        print(request.data)
         user_deck = request.data["deck"]
         rando = random.choice(Trainer.objects.all())
         ghost = rando.name
@@ -47,6 +51,10 @@ class GameDetail(APIView):
     
     
     def put(self, request):
+        print("Incoming Request")
+        print(request)
+        print("Request Data")
+        print(request.data)
         comp_selections = ['base', 'special', 'defense']
         queryset = filter_user_games(request)
         game = GameSerializer(queryset[0]).data
