@@ -17,14 +17,14 @@ def filter_user_games(request):
     
     
 class Create_Join_Game(APIView):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
     
     def post(self, request):
         print("Incoming Request")
         print(request)
         print("Request Data")
         print(request.data)
-        user_deck = request.data['body']["deck"]
+        user_deck = request.data["deck"]
         rando = random.choice(Trainer.objects.all())
         ghost = rando.name
         computer_deck = create_pokemon(rando.decks)
