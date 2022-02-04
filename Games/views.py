@@ -17,31 +17,27 @@ def filter_user_games(request):
     
     
 class Create_Join_Game(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
     
     def post(self, request):
         print("Incoming Request")
         print(request)
         print("Request Data")
         print(request.data)
-        user_deck = request.data["deck"]
+        user_deck = request.data['body']["deck"]
         rando = random.choice(Trainer.objects.all())
         ghost = rando.name
         computer_deck = create_pokemon(rando.decks)
-        new_game = Game(owner = request.user, 
-                            user_pokemon = user_deck,
-                            comp_pokemon = computer_deck, 
-                            active_user_pokemon = user_deck[0],
-                            active_comp_pokemon = computer_deck[0],
-                            ghost = ghost,
-                            user_poke_status = user_deck,
-                            comp_poke_status = computer_deck
-                            )
-        new_game.save()
-        #return Response(GameSerializer(new_game).data)
-        response = Response(GameSerializer(new_game).data)
-        response.headers['Access-Control-Allow-Origin'] = '*'
-        return response
+        new_game = Game(user_pokemon = user_deck,
+                        comp_pokemon = computer_deck, 
+                        active_user_pokemon = user_deck[0],
+                        active_comp_pokemon = computer_deck[0],
+                        ghost = ghost,
+                        user_poke_status = user_deck,
+                        comp_poke_status = computer_deck
+                        )
+
+        return Response(GameSerializer(new_game).data)
         
     
 
@@ -56,8 +52,8 @@ class GameDetail(APIView):
         print("Request Data")
         print(request.data)
         comp_selections = ['base', 'special', 'defense']
-        queryset = filter_user_games(request)
-        game = GameSerializer(queryset[0]).data
+        
+        game = request.data["body"]["game"]
         user_selection = request.data['selection']
         
         calculations(game, 'user','comp', user_selection)
@@ -70,44 +66,11 @@ class GameDetail(APIView):
             last_move = "defense"
         calculations(game, 'comp', 'user', comp_selection)
         
+        return Response(game)
         
-        queryset.update(last_move= last_move)
-   
-        
-        queryset.update(active_comp_pokemon= game['active_comp_pokemon'])
-        queryset.update(active_user_pokemon = game['active_user_pokemon'])
-        queryset.update(user_pokemon = game['user_pokemon'])
-        queryset.update(comp_pokemon = game['comp_pokemon'])
-        
-        #return Response(GameSerializer(queryset[0]).data)
-        response = Response(GameSerializer(queryset[0]).data)
-        response.headers['Access-Control-Allow-Origin'] = '*'
-        return response
         
 
-                
-
         
-def calculations(game, attacking_user, targeted_user, selection):
-    target = game[f'active_{targeted_user}_pokemon']
-    attacker = game[f'active_{attacking_user}_pokemon']
-    pokemon_list = game[f'{targeted_user}_pokemon']
-
-    if selection == 'defense':
-        attacker['stats']['defense'] = attacker['stats']['defense'] + 10
-        attacker['stats']['special-defense'] = attacker['stats']['special-defense'] + 10
-        return
-        
-    move = attacker['moves'][selection]
-    updated_target = attack(attacker,target,move)
-    if updated_target['stats']['hp'] <= 0:
-        if len(pokemon_list) > 0:
-            game[f'active_{targeted_user}_pokemon'] = pokemon_list.pop(0)
-        else:
-            # No More Pokemon :(
-            return
-    else:
-        target['stats']['hp'] == updated_target['stats']['hp']
 
         
         
