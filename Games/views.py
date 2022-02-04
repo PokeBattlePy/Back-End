@@ -70,39 +70,5 @@ class GameDetail(APIView):
         
         
 
-        
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    # queryset = filter_user_games(request)
-    #     # game = GameSerializer(queryset[len(queryset) - 1]).data
-    #     game = GameSerializer(queryset[0]).data
-
-    #     # If the user selects defense, give their pokemon a flat stat buff
-    #     if request.data['selection'] == 'defense':
-    #         game['active_user_pokemon']['stats']['defense'] = game['active_player_pokemon']['stats']['defense'] + 10
-    #         game['active_player_pokemon']['stats']['special-defense'] = game['active_player_pokemon']['stats']['special-defense'] + 10
-    #     else:
-    #         move = game['active_player_pokemon']['moves'][request.data["selection"]]
-            
-            
-    #         attacker = game['active_player_pokemon']
-    #         target = game['active_comp_pokemon']
-    #         updated_target = attack(attacker,target,move)
-    #         if updated_target['stats']['hp'] <= 0:
-    #             game['comp_pokemon'].pop(0)
-    #             if game['comp_pokemon']:
-    #                 game['active_comp_pokemon'] = game['comp_pokemon'][0]
-    #             else:
-    #                 #User has won!
-    #                 pass
-        
         

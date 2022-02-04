@@ -14,7 +14,8 @@ def calculations(game, attacking_user, targeted_user, selection):
     updated_target = attack(attacker,target,move)
     if updated_target['stats']['hp'] <= 0:
         if len(pokemon_list) > 0:
-            game[f'active_{targeted_user}_pokemon'] = pokemon_list.pop(0)
+            pokemon_list.pop(0)
+            game[f'active_{targeted_user}_pokemon'] = pokemon_list[0]
         else:
             # No More Pokemon :(
             return
