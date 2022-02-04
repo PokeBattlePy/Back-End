@@ -54,7 +54,7 @@ class GameDetail(APIView):
         comp_selections = ['base', 'special', 'defense']
         
         game = request.data["body"]["game"]
-        user_selection = request.data['selection']
+        user_selection = request.data['body']['selection']
         
         calculations(game, 'user','comp', user_selection)
         
