@@ -59,7 +59,8 @@ class GameDetail(APIView):
         calculations(game, 'user','comp', user_selection)
         
         comp_selection = random.choices(comp_selections, weights=(40,50,10))[0]
-        if comp_selection != 'defense':
+        
+        if comp_selection != 'defense' and game['active_comp_pokemon'] is not None:
             last_move = game['active_comp_pokemon']['moves'][comp_selection]['name']
             print(last_move)
         else:
