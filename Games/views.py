@@ -24,7 +24,7 @@ class Create_Join_Game(APIView):
         print(request)
         print("Request Data")
         print(request.data)
-        user_deck = request.data["deck"]
+        user_deck = request.data.body["deck"]
         rando = random.choice(Trainer.objects.all())
         ghost = rando.name
         computer_deck = create_pokemon(rando.decks)
