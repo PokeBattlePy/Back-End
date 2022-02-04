@@ -17,7 +17,7 @@ def filter_user_games(request):
     
     
 class Create_Join_Game(APIView):
-    permission_classes = (AllowAny)
+    permission_classes = (AllowAny,)
     
     def post(self, request):
         print("Incoming Request")
@@ -47,7 +47,7 @@ class Create_Join_Game(APIView):
 
 
 class GameDetail(APIView):
-    permission_classes = (AllowAny)
+    permission_classes = (AllowAny,)
     
     
     def put(self, request):
