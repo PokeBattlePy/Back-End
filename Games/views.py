@@ -61,6 +61,8 @@ class GameDetail(APIView):
             game['last_move'] = game['active_comp_pokemon']['moves'][comp_selection]['name']
         else:
             game['last_move'] = "defense"
+        #THIS IS THE PROBLEM!! LOSERS CANT ATTACK!!!
+        #TODO: Fix This
         calculations(game, 'comp', 'user', comp_selection)
         
         return Response(game)
