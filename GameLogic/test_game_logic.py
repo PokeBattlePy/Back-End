@@ -1,3 +1,4 @@
+from damage_calculator import calc_damage
 from damage_calculator import attack
 from damage_calculator import get_type_modifier
 def test_super_effective():
@@ -37,4 +38,6 @@ def test_immune():
 
 def test_damage_calc():
     attacker = {"pokemon_int": 37, "name": "vulpix", "rarity": "epic", "types": ["fire"], "moves": {"base": {"name": "body-slam", "power": 85, "class": "physical", "type": "normal"}, "special": {"name": "headbutt", "power": 70, "class": "physical", "type": "normal"}}, "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/37.png", "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/37.png", "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/37.png", "stats": {"hp": 28.4, "attack": 53.300000000000004, "special-attack": 65.0, "defense": 62.0, "special-defense": 94.5}}
-    defender = {"pokemon_int": 44, "name": "gloom", "rarity": "common", "types": ["grass", "poison"], "moves": {"base": {"name": "cut", "power": 50, "class": "physical", "type": "normal"}, "special": {"name": "swords-dance", "power": null, "class": "status", "type": "normal"}}, "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/44.png", "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/44.png", "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/44.png", "stats": {"hp": 60, "attack": 65, "special-attack": 85, "defense": 70, "special-defense": 75}}
+    defender = {"pokemon_int": 44, "name": "gloom", "rarity": "common", "types": ["grass", "poison"], "moves": {"base": {"name": "cut", "power": 50, "class": "physical", "type": "normal"}, "special": {"name": "swords-dance", "power": 0, "class": "status", "type": "normal"}}, "official_artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/44.png", "front": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/44.png", "back": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/44.png", "stats": {"hp": 60, "attack": 65, "special-attack": 85, "defense": 70, "special-defense": 75}}
+    move = attacker['moves']['base']
+    assert calc_damage(attacker,defender,move)
