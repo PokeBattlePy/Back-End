@@ -60,7 +60,7 @@ class Trainer(models.Model):
     )
     name = models.CharField(max_length=32)
     decks = models.JSONField(default=list)
-    cards = models.JSONField(default=init_cards)
+    cards = models.JSONField(default=init_cards())
     prev_battles = models.JSONField(default=list)
 
 
