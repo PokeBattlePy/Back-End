@@ -33,6 +33,7 @@ idna==3.3; python_version >= "3.5" and python_full_version < "3.0.0" or python_f
 pokebase==1.3.0 \
     --hash=sha256:a5881566bfaa6f9a860b847be0a648f23b02babdaf79ab96f6a6d0295b497c34 \
     --hash=sha256:1fab389df211f22d0987e8aae45d0d19b5db7b3eb0c92dca48283f74e9df4f70
+psycopg2==2.9.3; python_version >= "3.6"
 pyjwt==2.3.0; python_version >= "3.7" \
     --hash=sha256:e0c4bb8d9f0af0c7f5b1ec4c5036309617d03d56932877f2f7a0beeb5318322f \
     --hash=sha256:b888b4d56f06f6dcd777210c334e69c737be74755d3e5e9ee3fe67dc18a0ee41
