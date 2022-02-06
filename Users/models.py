@@ -60,7 +60,7 @@ class Trainer(models.Model):
     )
     name = models.CharField(max_length=32)
     decks = models.JSONField(default=list)
-    cards = models.JSONField(default=str([{'pokemon_int': 150, 'name': 'mewtwo', 'rarity': 'uncommon', 'types': ['psychic'], 'moves': {'base': {'name': 'pay-day', 'power': 63, 'class': 'physical', 'type': 'normal'}, 'special': {'name': 'mega-punch', 'power': 119, 'class': 'physical', 'type': 'normal'}}, 'official_artwork': 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png', 'front': 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png', 'back': 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/150.png', 'stats': {'hp': 116.60000000000001, 'attack': 121.00000000000001, 'special-attack': 169.4, 'defense': 99.00000000000001, 'special-defense': 99.00000000000001}}, {'pokemon_int': 25, 'name': 'pikachu', 'rarity': 'uncommon', 'types': ['electric'], 'moves': {'base': {'name': 'pay-day', 'power': 63, 'class': 'physical', 'type': 'normal'}, 'special': {'name': 'mega-punch', 'power': 119, 'class': 'physical', 'type': 'normal'}}, 'official_artwork': 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png', 'front': 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png', 'back': 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png', 'stats': {'hp': 38.5, 'attack': 60.50000000000001, 'special-attack': 55.00000000000001, 'defense': 44.0, 'special-defense': 55.00000000000001}}]))
+    cards = models.JSONField(default=init_cards)
     prev_battles = models.JSONField(default=list)
 
 
