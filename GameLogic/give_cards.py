@@ -23,6 +23,10 @@ def create_card(rarity=None, pokemon_int=None):
     attack = pokebase.move(pokemon_obj.moves[1].move.name)
     special = pokebase.move(pokemon_obj.moves[0].move.name)
 
+    if not attack.power:
+        attack.power = 55
+    if not special.power:
+        special.power = 55
     moves = {
     "base":{"name":pokemon_obj.moves[1].move.name, "power": attack.power|55, "class":attack.damage_class.name, "type": attack.type.name}, 
     "special": {"name":pokemon_obj.moves[0].move.name, "power": special.power|55, "class":special.damage_class.name, "type": special.type.name}
