@@ -3,6 +3,7 @@ from django.db import models
 import pokebase
 import random
 import json
+from GameLogic.give_cards import init_cards as give_init_cards
 
 rarities = ["common", "uncommon", "rare", "epic", "legendary"]
 multipliers = {"common":1, "uncommon":1.1, "rare":1.2, "epic":1.3, "legendary":1.4}
@@ -60,7 +61,7 @@ class Trainer(models.Model):
     )
     name = models.CharField(max_length=32)
     decks = models.JSONField(default=list)
-    cards = models.JSONField(default=init_cards)
+    cards = models.JSONField(default=give_init_cards)
     prev_battles = models.JSONField(default=list)
 
 
