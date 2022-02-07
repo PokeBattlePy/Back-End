@@ -1,5 +1,8 @@
 # Back-End
 
+## Deployed API
+
+[https://poke-battle-py.herokuapp.com/](https://poke-battle-py.herokuapp.com/)
 ## Endpoints For Trainer
 
 ### Trainer List View
