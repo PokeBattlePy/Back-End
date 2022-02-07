@@ -4,24 +4,22 @@
 
 ### /game
 
-**requires auth token**
 Endpoint for creating a Game instance
 
-body:
+`body:
 {
-    `DECK FROM TRAINER`
-}
+    "deck": [{POKEMON_ONE},{POKEMON_TWO},{POKEMON_THREE}]
+}`
 
 ### /game/battle
 
-**requires auth token**
 Endpoint for playing a round, takes a put request
 
-body:
+`body:
 {
-    "game":`GAME_ID`,
-    "selection":`ATTACK`
-}
+    "game": GAME_ID,
+    "selection": ATTACK
+}`
 
 where `GAME_ID` is the id for the game we are in and `ATTACK` is one of the three following strings:
 
@@ -29,4 +27,4 @@ where `GAME_ID` is the id for the game we are in and `ATTACK` is one of the thre
 2. `special`
 3. `defense`
 
-provid auth token and name to create trainer
+
