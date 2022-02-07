@@ -1,5 +1,21 @@
 # Back-End
 
+## Endpoints For Trainer
+
+### Trainer List View
+
+`/trainer`
+
+### Trainer Detail View
+
+`/trainer/<int:pk>`
+
+### Get New Card
+
+url: `/trainer/card`
+
+**Requires Auth Token**
+
 ## Endpoints For Game
 
 ### /game
