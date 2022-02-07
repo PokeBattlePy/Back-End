@@ -1,13 +1,8 @@
-from django.contrib.auth import get_user_model
-from django.db import models
-import pokebase
 import random
-import json
-from GameLogic.give_cards import init_cards as give_init_cards
+import pokebase
 
 rarities = ["common", "uncommon", "rare", "epic", "legendary"]
 multipliers = {"common":1, "uncommon":1.1, "rare":1.2, "epic":1.3, "legendary":1.4}
-
 
 def create_card(rarity=None, pokemon_int=None):
     if not pokemon_int:
@@ -28,6 +23,10 @@ def create_card(rarity=None, pokemon_int=None):
     attack = pokebase.move(pokemon_obj.moves[1].move.name)
     special = pokebase.move(pokemon_obj.moves[0].move.name)
 
+    if not attack.power:
+        attack.power = 55
+    if not special.power:
+        special.power = 55
     moves = {
     "base":{"name":pokemon_obj.moves[1].move.name, "power": attack.power|55, "class":attack.damage_class.name, "type": attack.type.name}, 
     "special": {"name":pokemon_obj.moves[0].move.name, "power": special.power|55, "class":special.damage_class.name, "type": special.type.name}
@@ -55,15 +54,5 @@ def create_card(rarity=None, pokemon_int=None):
 def init_cards():
   return [create_card(), create_card()]
 
-class Trainer(models.Model):
-    owner = models.ForeignKey(
-        get_user_model(), on_delete=models.CASCADE, null=True
-    )
-    name = models.CharField(max_length=32)
-    decks = models.JSONField(default=list)
-    cards = models.JSONField(default=give_init_cards)
-    prev_battles = models.JSONField(default=list)
-
-
-
-
+if __name__ == '__main__':
+    print(init_cards())
